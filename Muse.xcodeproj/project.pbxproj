@@ -570,7 +570,7 @@
 				TargetAttributes = {
 					0CFF46651DE3826300A3BE8E = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 95ZS5S2W7X;
+						DevelopmentTeam = E5J85J2V4G;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -950,7 +950,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 95ZS5S2W7X;
+				DEVELOPMENT_TEAM = E5J85J2V4G;
 				INFOPLIST_FILE = "$(SRCROOT)/Muse/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.edge.Muse;
@@ -973,7 +973,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 95ZS5S2W7X;
+				DEVELOPMENT_TEAM = E5J85J2V4G;
 				INFOPLIST_FILE = "$(SRCROOT)/Muse/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.edge.Muse;

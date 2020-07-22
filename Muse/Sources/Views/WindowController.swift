@@ -44,6 +44,7 @@ class WindowController: NSWindowController, NSWindowDelegate, SliderDelegate {
     
     var songTrackingTimer = Timer()
     var autoCloseTimer    = Timer()
+    var timeTimer = Timer()
     
     // MARK: Keys
     
@@ -134,6 +135,8 @@ class WindowController: NSWindowController, NSWindowDelegate, SliderDelegate {
     // If an event is sent from TouchBar control strip button should not be refreshed
     // Set to true at event sent, reset to false after notification is received
     var eventSentFromApp = false
+    
+    var format : DateFormatter!
     
     // MARK: Actions
     
@@ -481,11 +484,15 @@ class WindowController: NSWindowController, NSWindowDelegate, SliderDelegate {
     
     func prepareControlStripButton() {
         controlStripButton = NSCustomizableButton(
-            title: "11:11",
+            title: "Muse",
             target: self,
             action: #selector(presentModalTouchBar),
             hasRoundedLeadingImage: false
         )
+        
+        setupDateFormatter()
+        updateTime()
+        setupTimeTimer()
         
         controlStripButton?.textColor     = NSColor.white.withAlphaComponent(0.8)
         controlStripButton?.font          = NSFont.monospacedDigitSystemFont(ofSize: 16.0,
@@ -498,12 +505,36 @@ class WindowController: NSWindowController, NSWindowDelegate, SliderDelegate {
         controlStripButton?.addGestureRecognizer(controlStripButtonPanGestureRecognizer)
     }
     
+    func setupDateFormatter() {
+        format = DateFormatter()
+        format.dateFormat = "hh:mm"
+        format.timeZone = TimeZone.current
+    }
+    
+    func setupTimeTimer() {
+        timeTimer = Timer.scheduledTimer(timeInterval: 1,
+        target: self,
+        selector: #selector(updateTime),
+        userInfo: nil,
+        repeats: true)
+        timeTimer.tolerance = 0.2
+    }
+    
+    func deinitTimeTimer() {
+        timeTimer.invalidate()
+    }
+    
+    @objc func updateTime() {
+        let now = Date()
+        controlStripButton?.title = format.string(from: now)
+    }
+    
     func updateControlStripButton() {
-        if song.isValid && helper.isPlaying {
-            controlStripButton?.title = helper.playbackPosition.secondsToMMSSString
-        } else {
-            controlStripButton?.title = "♫"
-        }
+//        if song.isValid && helper.isPlaying {
+//            controlStripButton?.title = helper.playbackPosition.secondsToMMSSString
+//        } else {
+//            controlStripButton?.title = "♫"
+//        }
     }
     
     /**
@@ -1068,9 +1099,9 @@ class WindowController: NSWindowController, NSWindowDelegate, SliderDelegate {
         
         songProgressSlider?.doubleValue = position / song.duration
         
-        if isUIPlaying {
-            controlStripButton?.title = position.secondsToMMSSString
-        }
+//        if isUIPlaying {
+//            controlStripButton?.title = position.secondsToMMSSString
+//        }
         
         // Also update native touchbar scrubber
         updateNowPlayingInfoElapsedPlaybackTime(with: position)
@@ -1189,6 +1220,8 @@ class WindowController: NSWindowController, NSWindowDelegate, SliderDelegate {
         
         // Invalidate progress timer
         deinitSongTrackingTimer()
+        
+        deinitTimeTimer()
     }
     
     // MARK: UI refresh

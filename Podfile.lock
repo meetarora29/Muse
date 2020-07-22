@@ -9,7 +9,7 @@ DEPENDENCIES:
   - SpotifyKit (from `https://github.com/xzzz9097/SpotifyKit.git`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - MASPreferences
     - Sparkle
 
@@ -29,4 +29,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: be0c2c61163df39d887731d268cf60f860911d15
 
-COCOAPODS: 1.6.0.beta.1
+COCOAPODS: 1.9.3
